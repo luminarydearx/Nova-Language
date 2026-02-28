@@ -7,8 +7,12 @@ java {
     toolchain { languageVersion.set(JavaLanguageVersion.of(21)) }
 }
 
-group   = "com.luminar"
-version = "0.4.0"
+group = "com.luminar"
+version = "0.5.7"
+
+repositories {
+    mavenCentral()
+}
 
 application {
     mainClass.set("com.luminar.nova.Main")

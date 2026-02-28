@@ -1,17 +1,18 @@
-# ✦ Nova Language (v0.4.0)
+# ✦ Nova Language (v0.5.7)
 
 Nova adalah bahasa pemrograman dinamis (dynamically typed) yang didesain untuk menjadi sederhana, ekspresif, dan bertenaga. Proyek ini merupakan interpreter berbasis Java (Tree-walking interpreter) yang menghadirkan fitur modern tanpa boilerplate yang berlebihan.
 
 ---
 
-## 🚀 Fitur Baru (v0.4.0)
+## 🚀 Fitur Baru (v0.5.7)
 
+- **GUI Desktop Engine:** Sekarang Anda dapat membuat aplikasi window Native Windows langsung dari Nova menggunakan built-in `window()`, `button()`, `label()`, dan `input()`.
+- **Pattern Matching:** Pengenalan keyword `match` untuk percabangan kode yang lebih modern dan ekspresif.
+- **Functional Programming:** Metode `map()`, `filter()`, `forEach()`, `find()`, dan `reduce()` ditambahkan pada Array.
+- **Async .result:** Akses hasil task `spawn` secara langsung via property `.result` yang intuitif.
 - **OOP Lanjutan:** Dukungan penuh untuk `class`, `interface`, `abstract` classes/methods, dan **Visibility Modifiers** (`public`, `private`, `protected`).
 - **Exception Handling:** Blok `try`, `catch`, `finally`, serta keyword `throw` untuk penanganan error yang robust.
 - **Struktur Data:** Pengenalan `struct` untuk data ringan dan `enum` untuk konstanta kategori.
-- **Perulangan Baru:** Ditambahkan `do-while` loop.
-- **Tipe Data & Coercion:** Dukungan eksplisit untuk tipe `int`, `float`, `string`, dan `bool`.
-- **Compound assignments:** `+=`, `-=`, `*=`, `/=`, `%=`, `**=`.
 
 ---
 
@@ -182,7 +183,7 @@ Untuk pengalaman koding terbaik dengan _syntax highlighting_ dan _snippets_, ins
 ### Unduh Nova (Instalasi Cepat)
 
 Kunjungi halaman download untuk mendapatkan installer otomatis:
-👉 **[Unduh Nova (v0.4.0)](https://nova-lang.org/docs/download)**
+👉 **[Unduh Nova (v0.5.7)](https://nova-lang.org/docs/download)**
 
 ---
 

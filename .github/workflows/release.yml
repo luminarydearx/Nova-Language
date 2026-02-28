@@ -36,11 +36,11 @@ jobs:
       - name: Create MSI Installer
         run: |
           jpackage --input build/install/nova/lib `
-                   --main-jar nova-0.4.0.jar `
+                   --main-jar nova-0.5.7.jar `
                    --main-class com.luminar.nova.Main `
                    --type msi `
                    --name Nova `
-                   --app-version 0.4.0 `
+                   --app-version 0.5.7 `
                    --vendor "Luminar" `
                    --description "The Nova Programming Language" `
                    --license-file LICENSE.txt `
