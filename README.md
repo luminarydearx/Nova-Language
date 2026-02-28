@@ -129,17 +129,69 @@ Nova datang dengan berbagai fungsi bawaan:
 
 ---
 
+## 🚀 Instalasi (Installation)
+
+Pilih metode instalasi yang paling sesuai untuk workstation Anda:
+
+### 1. Windows (Otomatis - Rekomendasi)
+
+Cukup buka **PowerShell** sebagai Administrator dan jalankan perintah satu baris berikut untuk menginstal Nova dan mengatur Environment PATH secara otomatis:
+
+```powershell
+irm https://novalang.dev/install.ps1 | iex
+```
+
+### 2. Manual (Semua Platform - ZIP)
+
+Gunakan metode ini jika Anda ingin kontrol penuh atas tempat instalasi:
+
+1.  **Unduh** paket ZIP sesuai OS di [GitHub Releases](https://github.com/luminarydearx/Nova-Language/releases).
+2.  **Ekstrak** isi ZIP ke folder pilihan Anda (misal: `C:\Nova` atau `~/nova`).
+3.  **Tambahkan** folder `bin` ke dalam Environment Variable `PATH` sistem Anda.
+4.  **Verifikasi** dengan `nova version`.
+
+### 3. Build dari Sumber (Development)
+
+Jika Anda ingin berkontribusi atau menggunakan fitur terbaru langsung dari kode:
+
+```bash
+git clone https://github.com/luminarydearx/Nova-Language.git
+cd nova-lang
+./gradlew installDist
+# PATH: ./build/install/nova/bin
+```
+
+---
+
+## 🛠 Ekstensi Editor (VS Code)
+
+Untuk pengalaman koding terbaik dengan _syntax highlighting_ dan _snippets_, instal ekstensi resmi Nova:
+
+1.  Unduh file `.vsix` dari folder `release/` atau Marketplace.
+2.  Di VS Code: `Ctrl+Shift+X` -> klik `...` -> `Install from VSIX`.
+
+---
+
 ## 💻 Memulai (Getting Started)
 
 ### Prasyarat
 
-- Java 21 atau versi yang lebih baru.
+- Java 21 atau versi yang lebih baru (JDK).
 - Gradle (termasuk via Gradle Wrapper `gradlew`).
+
+### Unduh Nova (Instalasi Cepat)
+
+Kunjungi halaman download untuk mendapatkan installer otomatis:
+👉 **[Unduh Nova (v0.4.0)](https://nova-lang.org/docs/download)**
+
+---
 
 ### Menjalankan File Nova
 
 ```bash
 ./gradlew run --args="run my_code.nv"
+# Atau setelah instalasi:
+nova run my_code.nv
 ```
 
 ---

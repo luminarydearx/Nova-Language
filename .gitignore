@@ -1,0 +1,25 @@
+# ✦ Nova Language - .gitignore
+
+# ── Java & Gradle Binary Artifacts ──
+build/
+.gradle/
+*.class
+
+# ── Release Packages (Artifacts) ──
+# DO NOT COMMIT THESE TO REPO. Use GitHub Releases instead.
+release/
+dist/
+dummy_source.enc
+*.vsix
+
+# ── IDE & Local Sensitive Data ──
+.vscode/
+.idea/
+*.log
+NovaCrypto.java.bak
+description.txt.enc
+!description.txt.enc # If you specifically want to share the encrypted repo desc
+
+# ── OS Specific ──
+[Tt]humbs.db
+.DS_Store
