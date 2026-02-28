@@ -148,11 +148,12 @@ public class NovaCrypto {
 
     // --- ZIP UTILS ---
     private static void zipFolder(Path sourceFolderPath, Path zipPath) throws Exception {
-        Path baseDirPath = sourceFolderPath.getParent() != null ? sourceFolderPath.getParent() : Path.of("");
         try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(zipPath.toFile()))) {
             Files.walkFileTree(sourceFolderPath, new java.nio.file.SimpleFileVisitor<>() {
+                @Override
                 public java.nio.file.FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    String entryName = baseDirPath.relativize(file).toString().replace("\\", "/");
+                    Path base = sourceFolderPath.getParent();
+                    String entryName = (base != null ? base.relativize(file) : file).toString().replace("\\", "/");
                     zos.putNextEntry(new ZipEntry(entryName));
                     Files.copy(file, zos);
                     zos.closeEntry();

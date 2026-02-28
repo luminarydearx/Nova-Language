@@ -68,7 +68,7 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\nova-0.2.2.jar
+set CLASSPATH=%APP_HOME%\lib\nova-0.4.0.jar
 
 
 @rem Execute nova
