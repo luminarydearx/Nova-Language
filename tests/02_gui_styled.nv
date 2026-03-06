@@ -1,0 +1,60 @@
+// ✦ Nova v0.5.7 - Desktop GUI Test (Styled)
+// Window stays open indefinitely - no time limit
+
+var win = window("Nova Calculator", 420, 500)
+win.setLayout("flow")
+win.setBackground(Color(40, 40, 60))
+
+// Title label
+var title = label("✦ Nova Calculator")
+style(title, {
+    "foreground": Color(0, 220, 255),
+    "font": Font("Segoe UI", 24, "bold")
+})
+
+// Display
+var display = input(20)
+style(display, {
+    "font": Font("Consolas", 28),
+    "foreground": Color(255, 255, 255),
+    "background": Color(30, 30, 50)
+})
+
+// Result label
+var result = label("Result: 0")
+style(result, {
+    "foreground": Color(200, 200, 200),
+    "font": Font("Segoe UI", 16)
+})
+
+// Buttons
+var btnCalc = button("Calculate", func(t) {
+    var expr = getText(display)
+    setText(result, "Result: " + expr)
+    print "Calculated: " + expr
+})
+style(btnCalc, {
+    "font": Font("Segoe UI", 14, "bold"),
+    "background": Color(0, 150, 255),
+    "foreground": Color(255, 255, 255)
+})
+
+var btnClear = button("Clear", func(t) {
+    setText(display, "")
+    setText(result, "Result: 0")
+})
+style(btnClear, {
+    "font": Font("Segoe UI", 14),
+    "background": Color(200, 50, 50),
+    "foreground": Color(255, 255, 255)
+})
+
+// Add all to window
+win.add(title)
+win.add(display)
+win.add(btnCalc)
+win.add(btnClear)
+win.add(result)
+win.show()
+
+print "✦ GUI Calculator running!"

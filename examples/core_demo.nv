@@ -1,0 +1,127 @@
+// ✦ Nova v0.5.7 - Core Methods Test Suite
+// Tests: String, List, Map, Math, JSON, Date
+
+print "═══ STRING METHODS ═══"
+var s = "Hello Nova World"
+print "upper: " + s.upper()
+print "lower: " + s.lower()
+print "trim: '" + "  spaced  ".trim() + "'"
+print "split: " + str(s.split(" "))
+print "join: " + s.split(" ").join("-")
+print "slice(0,5): " + s.slice(0, 5)
+print "contains('Nova'): " + str(s.contains("Nova"))
+print "startsWith('Hello'): " + str(s.startsWith("Hello"))
+print "endsWith('World'): " + str(s.endsWith("World"))
+print "replace: " + s.replace("Nova", "Cosmic")
+print "indexOf('Nova'): " + str(s.indexOf("Nova"))
+print "repeat(3): " + "ab".repeat(3)
+print "padStart(10): '" + "hi".padStart(10, ".") + "'"
+print "padEnd(10): '" + "hi".padEnd(10, ".") + "'"
+print "charAt(6): " + s.charAt(6)
+print "toList: " + str("abc".toList())
+print "len: " + str(s.len())
+
+print "\n═══ LIST METHODS ═══"
+var arr = [10, 20, 30, 40, 50]
+print "Original: " + str(arr)
+arr.push(60)
+print "push(60): " + str(arr)
+print "pop: " + str(arr.pop())
+print "slice(1,3): " + str(arr.slice(1, 3))
+print "contains(30): " + str(arr.contains(30))
+print "indexOf(30): " + str(arr.indexOf(30))
+
+var doubled = arr.map(func(x) { return x * 2 })
+print "map(*2): " + str(doubled)
+
+var evens = arr.filter(func(x) { return x % 2 == 0 })
+print "filter(even): " + str(evens)
+
+var total = arr.reduce(func(acc, x) { return acc + x }, 0)
+print "reduce(sum): " + str(total)
+
+var found = arr.find(func(x) { return x > 25 })
+print "find(>25): " + str(found)
+
+print "every(>5): " + str(arr.every(func(x) { return x > 5 }))
+print "some(>45): " + str(arr.some(func(x) { return x > 45 }))
+
+var nested = [[1, 2], [3, 4], [5]]
+print "flat: " + str(nested.flat())
+
+arr.sort()
+print "sort: " + str(arr)
+
+print "\n═══ MAP METHODS ═══"
+var m = {"name": "Nova", "version": "0.5.7", "type": "Cosmic"}
+print "keys: " + str(m.keys())
+print "values: " + str(m.values())
+print "has('name'): " + str(m.has("name"))
+print "entries: " + str(m.entries())
+print "len: " + str(m.len())
+
+m.merge({"stars": 1000})
+print "merge: " + str(m)
+
+m.forEach(func(k, v) {
+    print "  " + k + " = " + str(v)
+})
+
+m.remove("type")
+print "after remove: " + str(m)
+
+print "\n═══ MATH NAMESPACE ═══"
+print "Math.PI: " + str(Math.PI)
+print "Math.E: " + str(Math.E)
+print "Math.abs(-42): " + str(Math.abs(-42))
+print "Math.floor(3.7): " + str(Math.floor(3.7))
+print "Math.ceil(3.2): " + str(Math.ceil(3.2))
+print "Math.round(3.5): " + str(Math.round(3.5))
+print "Math.sqrt(16): " + str(Math.sqrt(16))
+print "Math.pow(2, 10): " + str(Math.pow(2, 10))
+print "Math.min(5, 3): " + str(Math.min(5, 3))
+print "Math.max(5, 3): " + str(Math.max(5, 3))
+
+print "\n═══ JSON NAMESPACE ═══"
+var data = {"name": "Nova", "version": 5, "active": true}
+var jsonStr = JSON.stringify(data)
+print "stringify: " + jsonStr
+print "parse('42'): " + str(JSON.parse("42"))
+print "parse('true'): " + str(JSON.parse("true"))
+
+print "\n═══ DATE NAMESPACE ═══"
+print "Date.now(): " + str(Date.now())
+print "Date.year(): " + str(Date.year())
+print "Date.month(): " + str(Date.month())
+print "Date.day(): " + str(Date.day())
+print "Date.format(): " + Date.format()
+
+print "\n═══ UTILITIES ═══"
+print "typeOf('hello'): " + typeOf("hello")
+print "typeOf(42): " + typeOf(42)
+print "typeOf([1,2]): " + typeOf([1, 2])
+print "len('hello'): " + str(len("hello"))
+print "time(): " + str(time())
+print "VERSION: " + VERSION
+
+print "\n═══ MATCH EXPRESSION ═══"
+func getStatus(code) {
+    return match (code) {
+        200 -> "OK",
+        404 -> "Not Found",
+        500 -> "Server Error",
+        else -> "Unknown"
+    }
+}
+print "match(200): " + getStatus(200)
+print "match(404): " + getStatus(404)
+print "match(999): " + getStatus(999)
+
+print "\n═══ ASYNC/SPAWN ═══"
+var task = spawn(func() {
+    return 42 * 10
+})
+print "task.result: " + str(task.result)
+print "task.isDone: " + str(task.isDone)
+
+print "\n✦ ALL CORE TESTS PASSED ✦"

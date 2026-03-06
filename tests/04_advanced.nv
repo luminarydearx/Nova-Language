@@ -1,0 +1,118 @@
+// ✦ Nova v0.5.7 - OOP, Error Handling, Async Test
+
+print "═══ OOP TEST ═══"
+
+interface IGreetable {
+    func greet(): string;
+}
+
+class Animal {
+    var name: string
+    var sound: string
+
+    func init(name, sound) {
+        this.name = name
+        this.sound = sound
+    }
+
+    func speak() {
+        return this.name + " says " + this.sound
+    }
+}
+
+class Dog extends Animal implements IGreetable {
+    var breed: string
+
+    func init(name, breed) {
+        super.init(name, "Woof!")
+        this.breed = breed
+    }
+
+    func greet() {
+        return "Hi! I'm " + this.name + ", a " + this.breed
+    }
+}
+
+var dog = new Dog("Buddy", "Golden Retriever")
+print dog.speak()
+print dog.greet()
+
+print "\n═══ STRUCT & ENUM ═══"
+
+struct Point {
+    x: int
+    y: int
+}
+
+enum Direction { NORTH, SOUTH, EAST, WEST }
+
+var p = new Point(10, 20)
+print "Point: " + str(p)
+print "Direction: " + str(Direction.NORTH)
+
+print "\n═══ EXCEPTION HANDLING ═══"
+
+try {
+    print "Trying risky operation..."
+    throw "Something went wrong!"
+} catch (e) {
+    print "Caught: " + str(e)
+} finally {
+    print "Cleanup done"
+}
+
+try {
+    var x = 10 / 0
+} catch (e) {
+    print "Division error caught: " + str(e)
+}
+
+print "\n═══ CLOSURES & HIGHER-ORDER ═══"
+
+func makeCounter() {
+    var count = 0
+    return func() {
+        count += 1
+        return count
+    }
+}
+
+var counter = makeCounter()
+print "Counter: " + str(counter()) + ", " + str(counter()) + ", " + str(counter())
+
+func compose(f, g) {
+    return func(x) {
+        return f(g(x))
+    }
+}
+
+var double = func(x) { return x * 2 }
+var addOne = func(x) { return x + 1 }
+var doubleThenAdd = compose(addOne, double)
+print "compose(addOne, double)(5) = " + str(doubleThenAdd(5))
+
+print "\n═══ FILE I/O ═══"
+writeFile("nova-test/temp.txt", "Hello from Nova!")
+var content = readFile("nova-test/temp.txt")
+print "File content: " + content
+
+print "\n═══ PATTERN MATCHING ═══"
+
+func httpStatus(code) {
+    return match (code) {
+        200 -> "OK",
+        301 -> "Moved Permanently",
+        400 -> "Bad Request",
+        401 -> "Unauthorized",
+        403 -> "Forbidden",
+        404 -> "Not Found",
+        500 -> "Internal Server Error",
+        else -> "Unknown Status"
+    }
+}
+
+for code in [200, 301, 404, 500, 999] {
+    print str(code) + " -> " + httpStatus(code)
+}
+
+print "\n✦ ALL ADVANCED TESTS PASSED ✦"

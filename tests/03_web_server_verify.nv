@@ -1,0 +1,28 @@
+// ✦ Nova v0.5.7 - Quick Web Server Verification
+// Just tests that serve() and route() don't throw errors
+
+print "═══ WEB SERVER VERIFICATION ═══"
+print "Testing server creation..."
+
+var server = serve(9999)
+print "✓ serve(9999) created"
+
+server.route("/", func(req) {
+    return "<h1>Hello Nova!</h1>"
+})
+print "✓ route('/') registered"
+
+server.route("/api", func(req) {
+    return JSON.stringify({"status": "ok"})
+})
+print "✓ route('/api') registered"
+
+server.start()
+print "✓ Server started on port 9999"
+
+// Immediately stop to avoid blocking
+sleep(100)
+server.stop()
+print "✓ Server stopped"
+
+print "\n✦ WEB SERVER TESTS PASSED ✦"

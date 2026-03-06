@@ -1,0 +1,52 @@
+// ✦ Nova v0.5.7 - Web Server Test
+// Creates a styled website with routing
+
+var server = serve(3000)
+
+server.route("/", func(req) {
+    return "<html>
+<head>
+    <title>Nova Web App</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: #0a0a1a; color: #e0e0e0; }
+        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #0a0a2e, #1a1a4e); }
+        .hero h1 { font-size: 3em; color: #00dcff; margin-bottom: 10px; }
+        .hero p { font-size: 1.2em; color: #888; }
+        .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px; max-width: 900px; margin: auto; }
+        .card { background: #111133; border: 1px solid #222255; border-radius: 12px; padding: 24px; transition: 0.3s; }
+        .card:hover { border-color: #00dcff; transform: translateY(-4px); }
+        .card h3 { color: #00dcff; margin-bottom: 8px; }
+        .card p { color: #999; font-size: 0.9em; }
+        .footer { text-align: center; padding: 30px; color: #555; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class='hero'>
+        <h1>✦ Nova Language</h1>
+        <p>A Modern Programming Language built with Cosmic Power</p>
+        <p style='margin-top: 10px; color: #00dcff;'>v0.5.7 · Powered by Nova Web Server</p>
+    </div>
+    <div class='features'>
+        <div class='card'><h3>GUI Engine</h3><p>Build styled desktop apps with window(), button(), style()</p></div>
+        <div class='card'><h3>Web Server</h3><p>Create websites with serve() and route()</p></div>
+        <div class='card'><h3>Async/Await</h3><p>Non-blocking concurrency with spawn and .result</p></div>
+        <div class='card'><h3>Pattern Match</h3><p>Modern match expressions for clean branching</p></div>
+        <div class='card'><h3>Math/JSON/Date</h3><p>Full namespace objects for real applications</p></div>
+        <div class='card'><h3>Functional</h3><p>map, filter, reduce, find, every, some on arrays</p></div>
+    </div>
+    <div class='footer'>Built with Nova Language v0.5.7 · " + Date.format() + "</div>
+</body>
+</html>"
+})
+
+server.route("/api/info", func(req) {
+    return JSON.stringify({
+        "name": "Nova Language",
+        "version": VERSION,
+        "features": "GUI, Web, Async, Match, Functional"
+    })
+})
+
+server.start()
+print "Visit http://localhost:3000 in your browser"
