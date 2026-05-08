@@ -1,0 +1,4 @@
+// File: hello.nova
+// Contoh program Nova sederhana
+
+print("Hello from Nova Language v2.0!")

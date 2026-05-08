@@ -1,200 +1,154 @@
-# ✦ Nova Language (v0.5.7)
+# Nova Language v2.0
 
-Nova adalah bahasa pemrograman dinamis (dynamically typed) yang didesain untuk menjadi sederhana, ekspresif, dan bertenaga. Proyek ini merupakan interpreter berbasis Java (Tree-walking interpreter) yang menghadirkan fitur modern tanpa boilerplate yang berlebihan.
+![Nova](https://img.shields.io/badge/Nova-v2.0-blue)
+![Python](https://img.shields.io/badge/python-3.8+-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 
----
+**Nova** adalah bahasa pemrograman modern yang dirancang untuk menjadi **profesional, terstruktur, dan mudah digunakan**. Versi 2.0 adalah *rewrite* total dari versi sebelumnya (0.5.7 Java) ke Python dengan arsitektur yang lebih bersih.
 
-## 🚀 Fitur Baru (v0.5.7)
+## Fitur Utama v2.0
 
-- **GUI Desktop Engine:** Sekarang Anda dapat membuat aplikasi window Native Windows langsung dari Nova menggunakan built-in `window()`, `button()`, `label()`, dan `input()`.
-- **Pattern Matching:** Pengenalan keyword `match` untuk percabangan kode yang lebih modern dan ekspresif.
-- **Functional Programming:** Metode `map()`, `filter()`, `forEach()`, `find()`, dan `reduce()` ditambahkan pada Array.
-- **Async .result:** Akses hasil task `spawn` secara langsung via property `.result` yang intuitif.
-- **OOP Lanjutan:** Dukungan penuh untuk `class`, `interface`, `abstract` classes/methods, dan **Visibility Modifiers** (`public`, `private`, `protected`).
-- **Exception Handling:** Blok `try`, `catch`, `finally`, serta keyword `throw` untuk penanganan error yang robust.
-- **Struktur Data:** Pengenalan `struct` untuk data ringan dan `enum` untuk konstanta kategori.
+### 1. **Symbol Table & Scope Stack**
+Manajemen variabel yang rapi dengan dukungan *nested scope* (global, fungsi, blok).
 
----
+### 2. **Abstract Syntax Tree (AST)**
+Representasi kode sebagai pohon hierarki yang memudahkan optimasi dan analisis.
 
-## 🚀 Fitur Utama
+### 3. **Visitor Pattern**
+Pemisahan logika eksekusi dari struktur data AST menggunakan pola desain *Visitor*.
 
-- **Variabel Dinamis:** Dukungan untuk `var` (mutable) dan `const` (immutable).
-- **Struktur Data Luas:** Mendukung Arrays `[...]`, Objects `{...}`, Structs, dan Enums.
-- **Fungsi & Closures:** Dukungan pembuatan fungsi kustom menggunakan `func` dengan lexically scoped closures.
-- **Kontrol Alur:** `if`/`else`, `while`, `do-while`, dan `for...in` dengan rentang (range) `0..10`.
-- **Ekspresi Bertenaga:** Operator ternary, aritmatika lengkap (`**` untuk eksponen), dan compound assignments.
-- **Method Bawaan:** Dukungan pemanggilan metode langsung pada tipe data (misal: `[1, 2].push(3)` atau `"hello".upper()`).
+### 4. **Lexer & Parser yang Kokoh**
+*Tokenizer* dan *parser rekursif turun* (recursive descent) untuk analisis sintaks yang akurat.
 
----
+### 5. **Type Inference**
+Penentuan tipe data otomatis (`var x = 10` → int, `var y = "hello"` → string).
 
-## 📖 Sintaks dan Contoh Penggunaan
+### 6. **Constant Folding**
+Optimasi *compile-time*: `var x = 2 + 3` langsung diubah menjadi `var x = 5`.
 
-### 1. Object Oriented Programming (OOP)
+### 7. **Native Function Bridge**
+Bahasa Nova bisa memanggil fungsi Python langsung (misal: `sqrt()`, `clock()`).
 
-```nova
-interface IPrintable {
-    func printInfo(): void;
-}
+### 8. **Exception Handling**
+Dukungan `try-catch-finally` untuk penanganan error yang *robust*.
 
-class User implements IPrintable {
-    private var id: string;
-    public var name: string;
+### 9. **Bytecode Compiler & Virtual Machine (VM)**
+Kompilasi AST menjadi *bytecode* dan eksekusi di *stack-based VM* yang cepat.
 
-    func init(id: string, name: string) {
-        this.id = id;
-        this.name = name;
-    }
+### 10. **Module System**
+*Import* file `.nova` lain untuk modularitas kode.
 
-    public func printInfo(): void {
-        print "User ID: " + this.id + " | Name: " + this.name;
-    }
-}
+## Struktur Proyek
 
-var u = new User("USR-001", "Dearly");
-u.printInfo();
+```
+Nova-Language2/
+├── nova/
+│   ├── lexer/           # Tokenizer
+│   ├── parser/          # Parser (AST generator)
+│   ├── interpreter/     # Interpreter (Visitor Pattern)
+│   ├── ast/             # AST Node definitions
+│   ├── symbol_table/    # Symbol Table & Scope
+│   ├── native_bridge/   # Native Function Bridge
+│   ├── bytecode/        # Compiler & VM
+│   ├── module/          # Module System
+│   └── ast_visualizer/  # AST to JSON/Text
+├── tests/               # Unit tests
+├── examples/            # Contoh program .nova
+├── main.py              # Entry point
+├── README.md           # Dokumentasi ini
+└── LICENSE             # MIT License
 ```
 
-### 2. Exception Handling
+## Instalasi
 
+```bash
+git clone https://github.com/luminarydearx/Nova-Language2.git
+cd Nova-Language2
+```
+
+## Quick Start
+
+Buat file `hello.nova`:
 ```nova
+print("Hello, Nova v2.0!")
+```
+
+Jalankan:
+```bash
+python main.py examples/hello.nova
+```
+
+## Contoh Kode
+
+### Hello World
+```nova
+// examples/hello.nova
+print("Hello from Nova Language v2.0!")
+```
+
+### Aritmatika
+```nova
+// examples/arithmetic.nova
+var a = 10
+var b = 20
+print(a + b)  // 30
+print(a - b)  // -10
+print(a * b)  // 200
+print(a / b)  // 0.5
+```
+
+### Scope (Lingkup)
+```nova
+// examples/scope_test.nova
+var x = "global"
+
+{
+    var x = "local"
+    print(x)  // Output: "local"
+}
+
+print(x)  // Output: "global"
+```
+
+### Exception Handling
+```nova
+// examples/try_catch.nova
 try {
-    print "Starting operation...";
-    throw "Fatal Error Occurred";
-} catch (e) {
-    print "Caught exception: " + str(e);
+    print("Mencoba blok try...")
+    // throw "Something went wrong"
+} catch (Error e) {
+    print("Tangkap: " + e)
 } finally {
-    print "System cleanup completed.";
+    print("Blok finally selalu dieksekusi")
 }
 ```
 
-### 3. Structs & Enums
-
+### Native Functions
 ```nova
-struct Point {
-    x: int;
-    y: int;
-}
-
-enum Status { IDLE, RUNNING, ERROR }
-
-var p = new Point(10, 20);
-var s = Status.RUNNING;
-print "Point: " + str(p);
-print "Status: " + str(s);
+// examples/native_functions.nova
+print("Waktu sekarang: " + clock())
+print("Akar 16: " + sqrt(16))
 ```
 
-### 4. Control Flow & Loops
+## Testing
 
-```nova
-// Ternary operator
-var score = 85;
-var status = score >= 75 ? "Passed" : "Failed";
-print status; // Out: Passed
-
-// Do-while & For
-var count = 0;
-do {
-    count += 1;
-} while (count < 3);
-
-for i in 1..4 {
-    print "Loop Index: " + str(i);
-}
-```
-
-### 5. Concurrency (Async/Await)
-
-Nova supports non-blocking execution using `spawn` and `await`.
-
-```nova
-var task = spawn(func() {
-    // Background work
-    return "Result from thread"
-});
-
-print "Main thread continues...";
-var val = await task;
-print val;
-```
-
----
-
-## 🛠 Fungsi Bawaan (Built-ins)
-
-Nova datang dengan berbagai fungsi bawaan:
-
-- **Konversi:** `int(x)`, `float(x)`, `str(x)`, `bool(x)`
-- **Array/Object:** `len(x)`, `push(arr, val)`, `pop(arr)`, `keys(obj)`, `values(obj)`
-- **Matematika:** `abs(n)`, `max(a, b)`, `min(a, b)`, `sqrt(n)`, `PI`
-- **Utilitas:** `print(x)`, `input(prompt)`, `type(x)`, `exit(code)`
-
----
-
-## 🚀 Instalasi (Installation)
-
-Pilih metode instalasi yang paling sesuai untuk workstation Anda:
-
-### 1. Windows (Otomatis - Rekomendasi)
-
-Cukup buka **PowerShell** sebagai Administrator dan jalankan perintah satu baris berikut untuk menginstal Nova dan mengatur Environment PATH secara otomatis:
-
-```powershell
-irm https://novalang.dev/install.ps1 | iex
-```
-
-### 2. Manual (Semua Platform - ZIP)
-
-Gunakan metode ini jika Anda ingin kontrol penuh atas tempat instalasi:
-
-1.  **Unduh** paket ZIP sesuai OS di [GitHub Releases](https://github.com/luminarydearx/Nova-Language/releases).
-2.  **Ekstrak** isi ZIP ke folder pilihan Anda (misal: `C:\Nova` atau `~/nova`).
-3.  **Tambahkan** folder `bin` ke dalam Environment Variable `PATH` sistem Anda.
-4.  **Verifikasi** dengan `nova version`.
-
-### 3. Build dari Sumber (Development)
-
-Jika Anda ingin berkontribusi atau menggunakan fitur terbaru langsung dari kode:
-
+Jalankan semua test:
 ```bash
-git clone https://github.com/luminarydearx/Nova-Language.git
-cd nova-lang
-./gradlew installDist
-# PATH: ./build/install/nova/bin
+python tests/test_interpreter.py
+python tests/test_samples.py
 ```
 
----
+## Kontribusi
 
-## 🛠 Ekstensi Editor (VS Code)
+Pull request sangat diterima! Pastikan:
+1. Kode Python mengikuti PEP 8
+2. Tambahkan test untuk fitur baru
+3. Update dokumentasi jika diperlukan
 
-Untuk pengalaman koding terbaik dengan _syntax highlighting_ dan _snippets_, instal ekstensi resmi Nova:
+## Lisensi
 
-1.  Unduh file `.vsix` dari folder `release/` atau Marketplace.
-2.  Di VS Code: `Ctrl+Shift+X` -> klik `...` -> `Install from VSIX`.
-
----
-
-## 💻 Memulai (Getting Started)
-
-### Prasyarat
-
-- Java 21 atau versi yang lebih baru (JDK).
-- Gradle (termasuk via Gradle Wrapper `gradlew`).
-
-### Unduh Nova (Instalasi Cepat)
-
-Kunjungi halaman download untuk mendapatkan installer otomatis:
-👉 **[Unduh Nova (v0.5.7)](https://nova-lang.org/docs/download)**
+Proyek ini dilisensikan di bawah **MIT License** - lihat file [LICENSE](LICENSE).
 
 ---
 
-### Menjalankan File Nova
-
-```bash
-./gradlew run --args="run my_code.nv"
-# Atau setelah instalasi:
-nova run my_code.nv
-```
-
----
-
-_The universe compiles in Nova._ ✦
+**Dibuat dengan ❤️ oleh [Dearly Febriano](https://github.com/luminarydearx)**

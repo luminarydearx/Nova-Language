@@ -1,0 +1,11 @@
+// File: scope_test.nova
+// Contoh pengujian lingkup (scope)
+
+var x = "global"
+
+{
+    var x = "local"
+    print(x)  // Harusnya: "local"
+}
+
+print(x)  // Harusnya: "global"
