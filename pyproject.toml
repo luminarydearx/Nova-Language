@@ -5,26 +5,31 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "nova-language"
 version = "2.0.0"
+description = "Nova Programming Language - A modern language with Python implementation"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
 authors = [
     {name = "Dearly Febriano Irwansyah", email = "dearlyfebrianoi@gmail.com"},
 ]
-description = "Nova Language - A custom programming language with Python implementation"
-readme = "README.md"
-requires-python = ">=3.8"
+keywords = ["programming-language", "compiler", "interpreter", "nova"]
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Compilers",
+    "Topic :: Software Development :: Interpreters",
 ]
-keywords = ["nova", "language", "interpreter", "programming"]
 
 [project.urls]
 Homepage = "https://github.com/luminarydearx/Nova-Language"
 Repository = "https://github.com/luminarydearx/Nova-Language"
+Documentation = "https://github.com/luminarydearx/nova-language-documentation"
 
 [project.scripts]
-nova = "nova.cli.nova_console:main"
+nova = "main:main"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["nova*"]
+[tool.setuptools]
+package-dir = {"nova" = "nova"}
+packages = ["nova"]
